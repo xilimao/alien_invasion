@@ -48,7 +48,7 @@ def update_screen(ai_settings, screen, ship, bullets):
 
 
 def update_bullets(bullets):
-    """更新子弹的位置，并删除樱井孝是的子弹"""
+    """更新子弹的位置，并删除已经消失的子弹"""
     #更新子弹的位置
     bullets.update()
 
