@@ -18,5 +18,7 @@ class Settings():
         self.bullet_color = 60, 60, 60
         self.bullets_allowed = 5
 
+        #外星人的设置
+        self.alien_speed_factor = 0.5
 
 
