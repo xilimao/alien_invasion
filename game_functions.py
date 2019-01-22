@@ -64,6 +64,11 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
             bullets.remove(bullet)
     #检测是否有子弹击中了外星人
     #如果是这样，就删除相应的子弹和外星人
+    check_bullet_alien_collosions(ai_settings, screen, ship, aliens, bullets);
+
+
+def check_bullet_alien_collosions(ai_settings, screen, ship, aliens, bullets):
+    """相应子弹和外星人碰撞"""
     #该函数用来检测是否rect发生重叠，其中bool值对应两个物体，True则会消失，False不会消失
     collosions = pygame.sprite.groupcollide(bullets, aliens, False, True)
 
