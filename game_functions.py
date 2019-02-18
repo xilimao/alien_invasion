@@ -87,7 +87,7 @@ def start_game(ai_settings, screen, stats, ship, aliens, bullets):
     ship.center_ship()
 
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets,
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
                   play_button):
     """更新屏幕图像，并且换到新屏幕"""
     # 每次循环都重绘屏幕
@@ -98,6 +98,9 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets,
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+
+    #显示得分
+    sb.show_score()
 
     # 如果游戏处于非活动状态，就绘制Play按钮
     if not stats.game_active:
