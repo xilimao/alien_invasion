@@ -110,7 +110,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
     pygame.display.flip()
 
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """更新子弹的位置，并删除已经消失的子弹"""
     #更新子弹的位置
     bullets.update()
@@ -123,10 +123,12 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
             bullets.remove(bullet)
     #检测是否有子弹击中了外星人
     #如果是这样，就删除相应的子弹和外星人
-    check_bullet_alien_collosions(ai_settings, screen, ship, aliens, bullets);
+    check_bullet_alien_collosions(ai_settings, screen, stats, sb, ship,
+                                  aliens, bullets);
 
 
-def check_bullet_alien_collosions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collosions(ai_settings, screen, stats, sb, ship,
+                                  aliens, bullets):
     """相应子弹和外星人碰撞"""
     #该函数用来检测是否rect发生重叠，其中bool值对应两个物体，True则会消失，False不会消失
     collosions = pygame.sprite.groupcollide(bullets, aliens, False, True)
@@ -136,6 +138,11 @@ def check_bullet_alien_collosions(ai_settings, screen, ship, aliens, bullets):
         bullets.empty()
         ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
+
+    if collosions:
+        for aliens in collosions.values():
+            stats.score += ai_settings.alien_points
+            sb.prep_score()
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
