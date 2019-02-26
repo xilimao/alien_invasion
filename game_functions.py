@@ -143,6 +143,7 @@ def check_bullet_alien_collosions(ai_settings, screen, stats, sb, ship,
         for aliens in collosions.values():
             stats.score += ai_settings.alien_points
             sb.prep_score()
+        check_high_score(stats, sb)
 
 
 def fire_bullet(ai_settings, screen, ship, bullets):
@@ -249,3 +250,9 @@ def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
             ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
             break
 
+
+def check_high_score(stats, sb):
+    """检查是否诞生了新的最高得分"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()
